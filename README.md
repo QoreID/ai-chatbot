@@ -7,16 +7,17 @@ Internal NPM package for Verifyme’s AI chatbot wrapper.
 Install directly from the GitLab repository using the project package URL.
 
 ```bash
-npm install git+ssh://git@gitlab.com/<namespace>/<project>.git#<branch-or-tag>
+npm install git+ssh://git@gitlab.com:vmn-soa/qoredata/ai-chatbot-js-package.git#
 ```
 
 Or for HTTPS access:
 
 ```bash
-npm install https://gitlab.com/<namespace>/<project>/-/archive/<branch-or-tag>/<project>-<branch-or-tag>.tar.gz
+npm install https://gitlab.com/vmn-soa/qoredata/ai-chatbot-js-package/-/archive/<branch-or-tag>/ai-chatbot-js-package-<branch-or-tag>.tar.gz
 ```
 
-> Replace `<namespace>`, `<project>`, and `<branch-or-tag>` with the correct GitLab repository path and branch or tag.
+> Repo: `git@gitlab.com:vmn-soa/qoredata/ai-chatbot-js-package.git`
+> Generated package directory: `ai-chatbot-js-package/`
 
 ## Usage
 
@@ -49,13 +50,14 @@ await AiChatbot.init(
 ### Methods
 
 - `AiChatbot.init(config, url?)`
+
   - `config`: `InitAiChatbot` object.
   - `url`: optional URL to load the chatbot SDK script. Defaults to the production CDN.
-
 - `AiChatbot.setActiveContext(key)`
-  - Set the active chatbot context.
 
+  - Set the active chatbot context.
 - `AiChatbot.getContext(key?)`
+
   - Retrieve a specific context or the current context.
 
 ## Notes
