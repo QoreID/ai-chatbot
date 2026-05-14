@@ -1,14 +1,8 @@
 /**
- * This is the main entry point for the AI Chatbot JavaScript package. It exports the necessary functions and classes to interact with the AI chatbot API.
- * The package is built using Vite and includes optimizations for production use, such as minification and removal of console logs.
- *
- * The exported functions and classes can be used to create and manage chatbot instances, send messages, and handle responses from the AI chatbot API.
- *
- * The package is designed to be easy to integrate into any JavaScript project, allowing developers to quickly add AI chatbot functionality to their applications.
- *
- * For more information on how to use the package, please refer to the documentation and examples provided in the repository.
+ * This is the main entry point for the AI Chatbot JavaScript package.
+ * It exports the necessary functions and classes to interact with the AI chatbot API.
  */
-interface UIConfig {
+export interface UIConfig {
     /**
      *  @type string
      *  @example
@@ -38,7 +32,8 @@ export interface InitAiChatbot {
 export interface IAiChatbotSDK {
     init(config: InitAiChatbot): void;
     setActiveContext(key: string): void;
-    getContext(key?: string): any;
+    getContext(key?: string): string[];
+    clearSession(): void;
 }
 declare global {
     interface Window {
@@ -73,7 +68,11 @@ export declare class AiChatbot {
      * Gets the context for a given key or the current active context.
      * @param key - Optional context key. If omitted, returns the current active context.
      */
-    getContext(key?: string): any;
+    getContext(key?: string): string[];
+    /**
+     *  Clear session data
+     */
+    clearSession(): void;
     /**
      * Loads the chatbot SDK from the specified URL.
      * @param url - The URL of the chatbot SDK script
