@@ -72,9 +72,12 @@ await AiChatbot.init(
 - `AiChatbot.setActiveContext(key)`
 
   - Set the active chatbot context.
-- `AiChatbot.getContext(key?)`
+- `AiChatbot.getContext(key?): string[]`
 
   - Retrieve a specific context or the current context.
+- `AiChatbot.clearSession()`
+
+  - Clear current user session data
 
 ## Notes
 
