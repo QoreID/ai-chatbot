@@ -2,7 +2,6 @@
   "name": "@verifyme/ai-chatbot",
   "version": "0.1.0",
   "description": "Verifyme's AI Chatbot NPM package",
-  "owner": "qoreid",
   "keywords": [
     "chatbot",
     "ai",

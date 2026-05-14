@@ -16,6 +16,18 @@ Or for HTTPS access:
 npm install https://gitlab.com/vmn-soa/qoredata/ai-chatbot-js-package/-/archive/<branch-or-tag>/ai-chatbot-js-package-<branch-or-tag>.tar.gz
 ```
 
+For private repo access, use SSH with your authorized GitLab key:
+
+```bash
+npm install git+ssh://git@gitlab.com:vmn-soa/qoredata/ai-chatbot-js-package.git#setup
+```
+
+If you need a direct tarball and the file is available in the branch, this form may work with the correct GitLab auth:
+
+```bash
+npm install https://gitlab.com/vmn-soa/qoredata/ai-chatbot-js-package/-/raw/setup/verifyme-ai-chatbot-0.1.0.tgz
+```
+
 > Repo: `git@gitlab.com:vmn-soa/qoredata/ai-chatbot-js-package.git`
 > Generated package directory: `ai-chatbot-js-package/`
 
