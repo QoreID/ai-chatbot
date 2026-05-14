@@ -3,7 +3,7 @@
  * It exports the necessary functions and classes to interact with the AI chatbot API.
  */
 
-interface UIConfig {
+export interface UIConfig {
   /**
    *  @type string
    *  @example
