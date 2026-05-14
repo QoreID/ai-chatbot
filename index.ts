@@ -1,5 +1,5 @@
 /**
- * This is the main entry point for the AI Chatbot JavaScript package. 
+ * This is the main entry point for the AI Chatbot JavaScript package.
  * It exports the necessary functions and classes to interact with the AI chatbot API.
  */
 
@@ -35,7 +35,8 @@ export interface InitAiChatbot {
 export interface IAiChatbotSDK {
   init(config: InitAiChatbot): void;
   setActiveContext(key: string): void;
-  getContext(key?: string): any;
+  getContext(key?: string): string[];
+  clearSession(): void;
 }
 
 declare global {
@@ -51,7 +52,8 @@ declare global {
 export class AiChatbot {
   private static instance: AiChatbot;
   private sdkInstance: IAiChatbotSDK | null = null;
-  private defaultUrl = 'https://web-widget.verifyme.ng/chatbot/latest/chatbot.iife.js';
+  private defaultUrl =
+    "https://web-widget.verifyme.ng/chatbot/latest/chatbot.iife.js";
 
   private constructor() {}
 
@@ -82,7 +84,7 @@ export class AiChatbot {
    */
   setActiveContext(key: string): void {
     if (!this.sdkInstance) {
-      throw new Error('Chatbot SDK not initialized. Call init() first.');
+      throw new Error("Chatbot SDK not initialized. Call init() first.");
     }
     this.sdkInstance.setActiveContext(key);
   }
@@ -91,11 +93,21 @@ export class AiChatbot {
    * Gets the context for a given key or the current active context.
    * @param key - Optional context key. If omitted, returns the current active context.
    */
-  getContext(key?: string): any {
+  getContext(key?: string): string[] {
     if (!this.sdkInstance) {
-      throw new Error('Chatbot SDK not initialized. Call init() first.');
+      throw new Error("Chatbot SDK not initialized. Call init() first.");
     }
     return this.sdkInstance.getContext(key);
+  }
+
+  /**
+   *  Clear session data
+   */
+  clearSession() {
+    if (!this.sdkInstance) {
+      throw new Error("Chatbot SDK not initialized. Call init() first.");
+    }
+    return this.sdkInstance.clearSession();
   }
 
   /**
@@ -112,20 +124,25 @@ export class AiChatbot {
       }
 
       // Load the script
-      this.loadScript(url).then(() => {
-        // Wait for the SDK to be available
-        const checkLoaded = () => {
-          if (window.AiChatbot) {
-            resolve(window.AiChatbot);
-          } else {
-            setTimeout(checkLoaded, 100);
-          }
-        };
-        checkLoaded();
+      this.loadScript(url)
+        .then(() => {
+          // Wait for the SDK to be available
+          const checkLoaded = () => {
+            if (window.AiChatbot) {
+              resolve(window.AiChatbot);
+            } else {
+              setTimeout(checkLoaded, 100);
+            }
+          };
+          checkLoaded();
 
-        // Timeout after 10 seconds
-        setTimeout(() => reject(new Error('Chatbot SDK failed to load')), 10000);
-      }).catch(reject);
+          // Timeout after 10 seconds
+          setTimeout(
+            () => reject(new Error("Chatbot SDK failed to load")),
+            10000,
+          );
+        })
+        .catch(reject);
     });
   }
 
@@ -136,10 +153,11 @@ export class AiChatbot {
    */
   private loadScript(url: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
       script.src = url;
       script.onload = () => resolve();
-      script.onerror = () => reject(new Error(`Failed to load chatbot SDK from ${url}`));
+      script.onerror = () =>
+        reject(new Error(`Failed to load chatbot SDK from ${url}`));
       document.head.appendChild(script);
     });
   }

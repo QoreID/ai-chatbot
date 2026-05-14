@@ -39,7 +39,7 @@ await AiChatbot.init(
 
 ### To use in development
 
-```
+```typescript
 import AiChatbot from '@verifyme/ai-chatbot';
 
 await AiChatbot.init(
